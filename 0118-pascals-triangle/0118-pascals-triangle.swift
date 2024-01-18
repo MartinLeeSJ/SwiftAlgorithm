@@ -29,8 +29,10 @@ class Solution {
             }
             
             let appendLimit: Int = (row + 1) % 2 == 0 ? Int(limit) : Int(limit) - 1
-            let appendArraySlice: ArraySlice<Int> = result[row][0..<Int(limit)] + Array(result[row][0..<appendLimit].reversed())
-            result[row] = Array(appendArraySlice)
+            let forward: Array<Int> = Array(result[row][0..<Int(limit)])
+            let backward: Array<Int> = Array(result[row][0..<appendLimit].reversed())
+
+            result[row] = forward + backward
         }
         
         return result
